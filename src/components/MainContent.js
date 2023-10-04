@@ -26,9 +26,15 @@ export default function MainContent() {
         <div className="main-container">
             <div className="left-side-menu">
                 <div className="nav-container">
-                    <button id="dashboard" onClick={()=> {setactiveButton('dashboard')}}>Dashboard</button>
-                    <button id="Graph" onClick={()=>{setactiveButton('graph')}}>Graphs</button>
-                    <button id="watchlist" onClick={()=>{setactiveButton('watchlist')}}>Watchlist</button>
+                    <button id="dashboard" onClick={()=> {setactiveButton('dashboard')}}>
+                        <img src="./images/home.png" alt="home" />
+                    </button>
+                    <button id="Graph" onClick={()=>{setactiveButton('graph')}}>
+                        {/* <img src="./images/bar-chart.png" alt="graph-icon" /> */}
+                    </button>
+                    <button id="watchlist" onClick={()=>{setactiveButton('watchlist')}}>
+                        {/* <img src="./images/file.png" alt="watchlist-icon" /> */}
+                    </button>
                     
                 </div>
             </div>

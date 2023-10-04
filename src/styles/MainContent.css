@@ -33,15 +33,13 @@
 }
 
 .nav-container button{
-  text-align: center;
   margin: 1.5rem 0;
-  font-size: 1rem;
   padding: .8rem 2rem;
   background: var(--surface);
   outline: none;
   border-style: none;
   color:var(--on-surface);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-circle);
   box-shadow: var(--shadow-2);
 }
 .nav-container button:hover{
@@ -50,6 +48,9 @@
 }
 .nav-container button:active{
   transform: translateY(2px);
+}
+.nav-container button img{
+  width: auto;
 }
 
 .main-content{
