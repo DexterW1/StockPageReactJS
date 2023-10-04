@@ -1,0 +1,12 @@
+.dashboard-card{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: ; */
+    /* align-items: cent; */
+    /* border: 2px solid white */
+    border-radius: 20px;
+    background-color: var(--surface);
+    height: 10rem;
+    width: 20rem;
+}
