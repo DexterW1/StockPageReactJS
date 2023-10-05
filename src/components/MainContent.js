@@ -28,9 +28,8 @@ export default function MainContent() {
                 <div className="nav-container">
                     
                     <button id="dashboard" onClick={()=>{setactiveButton('dashboard')}}>
-                        
                         <img className='leftIcons' src="./images/home-white.png" alt="home-icon" />
-                        </button>
+                    </button>
                     <button id="Graph" onClick={()=>{setactiveButton('graph')}}>
                         <img className='leftIcons' id='graph-icon' src="./images/bar-chart-white.png" alt="graph-icon" /> 
                     </button>
