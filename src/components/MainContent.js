@@ -26,14 +26,16 @@ export default function MainContent() {
         <div className="main-container">
             <div className="left-side-menu">
                 <div className="nav-container">
-                    <button id="dashboard" onClick={()=> {setactiveButton('dashboard')}}>
-                        <img src="./images/home.png" alt="home" />
-                    </button>
+                    
+                    <button id="dashboard" onClick={()=>{setactiveButton('dashboard')}}>
+                        
+                        <img className='leftIcons' src="./images/home-white.png" alt="home-icon" />
+                        </button>
                     <button id="Graph" onClick={()=>{setactiveButton('graph')}}>
-                        {/* <img src="./images/bar-chart.png" alt="graph-icon" /> */}
+                        <img className='leftIcons' id='graph-icon' src="./images/bar-chart-white.png" alt="graph-icon" /> 
                     </button>
                     <button id="watchlist" onClick={()=>{setactiveButton('watchlist')}}>
-                        {/* <img src="./images/file.png" alt="watchlist-icon" /> */}
+                        <img className='leftIcons' src="./images/file-white.png" alt="watchlist-icon" />
                     </button>
                     
                 </div>
@@ -76,3 +78,4 @@ export default function MainContent() {
     </>
   )
 }
+//<div> Icons made by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy"> Dave Gandy </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>

@@ -23,7 +23,7 @@
   grid-template-columns: 1;
   display: flex;
   justify-content: center;
-  padding: 4rem;
+  padding: .5rem;
   border-right: 1px solid var(--outline);
 }
 .left-side-menu .nav-container{
@@ -31,14 +31,12 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
-
 .nav-container button{
-  margin: 1.5rem 0;
-  padding: .8rem 2rem;
+  margin: 0;
+  padding: 1rem;
   background: var(--surface);
-  outline: none;
   border-style: none;
-  color:var(--on-surface);
+  width:60px;
   border-radius: var(--radius-circle);
   box-shadow: var(--shadow-2);
 }
@@ -46,11 +44,13 @@
   background: var(--on-background);
   color: var(--on-primary);
 }
+
+.nav-container button:hover .leftIcons{
+  filter: brightness(0);
+  transition: filter .5s ease;
+}
 .nav-container button:active{
   transform: translateY(2px);
-}
-.nav-container button img{
-  width: auto;
 }
 
 .main-content{
