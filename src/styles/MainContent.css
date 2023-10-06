@@ -52,7 +52,7 @@
 .nav-container button:active{
   transform: translateY(2px);
 }
-
+/* ==========================MAIN CONTENT =========================== */
 .main-content{
   position: relative;
 }
@@ -84,4 +84,22 @@
   color: white;
   font-size: 2rem;
   border-bottom: 1px solid var(--outline);
+}
+/*==================================== RIGHT-SIDE MENU ================================ */
+.right-side-menu{
+  border-left: 1px solid var(--outline);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+}
+.right-card{
+  display: flex;
+  height: 21vh;
+  margin: 0 2rem;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  box-shadow: var(--shadow-2);
 }
