@@ -7,6 +7,18 @@
     /* border: 2px solid white */
     border-radius: 20px;
     background-color: var(--surface);
-    height: 10rem;
-    width: 20rem;
+    height: 16.8rem;
+    width: 23rem;
+}
+.stock-data{
+    border-bottom: 1px solid var(--outline);
+}
+.stock-info{
+    display: flex;
+    margin: 1rem 1rem;
+    color: #F2F3F5;
+}
+.stock-info .col1{
+    
+    margin-right: 8rem;
 }

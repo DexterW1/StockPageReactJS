@@ -16,14 +16,14 @@ export default function ChartCard(props) {
         c,
         t: format(new Date(SymbolData.t[index] * 1000), 'HH:mm', { timeZone: 'America/Los_Angeles' }), 
     }));
-    const chartMargin = { top: 0, right: 0, bottom: 0, left: -14 }; // Set all margins to 0
+    const chartMargin = { top: 20, right:0, bottom: 6, left: 20 }; // Set all margins to 0
     const lastDataPoint = convertedData[convertedData.length - 1].c;
     const referenceLineY = convertedData[0].c;
     const referenceLineStroke = lastDataPoint > referenceLineY ? 'green' : 'red';
   return (
     <>
         <div className="linechart-container">
-                <LineChart width={210} height={130} data={convertedData} margin={chartMargin}>
+                <LineChart width={280} height={150} data={convertedData} margin={chartMargin}>
                     <XAxis dataKey="t" />
                     <YAxis 
                         type="number"
