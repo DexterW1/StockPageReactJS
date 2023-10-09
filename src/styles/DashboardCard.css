@@ -19,6 +19,11 @@
     color: #F2F3F5;
 }
 .stock-info .col1{
-    
     margin-right: 8rem;
+}
+
+@media (max-width: 1500px) {
+    .dashboard-card{
+        width: 20rem;
+    }
 }

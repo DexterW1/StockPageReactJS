@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import '../styles/DashboardCard.css'
 import ChartCard from './ChartCard';
+import SymbolInfo from './SymbolInfo';
 const finKey = process.env.REACT_APP_API_KEY;
 
 function getTodayTimeUnix() {
@@ -82,7 +83,7 @@ export default function DashboardCard(props) {
     console.log(stockName);
     finnhubClient.stockCandles(`${tickerSymbol}`, "5", start/1000,end/1000, (error, data, response) => {
         setStock(data);
-        console.log(data);
+        // console.log(data);
     });
   },[]);
   return (
@@ -95,14 +96,7 @@ export default function DashboardCard(props) {
             <ChartCard SymbolData={stock}/>
           </div>
           <div className="stock-info">
-            <div className="col1">
-              <p>High: </p>
-              <p>Low: </p>
-            </div>
-            <div className="col2">
-              <p>High: </p>
-              <p>Low: </p>
-            </div>
+            <SymbolInfo StockName ={stockName}/>
           </div>
         </div>
     
