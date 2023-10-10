@@ -4,6 +4,7 @@ import GraphCard from './GraphCard'
 import DashboardCard from './DashboardCard';
 import NewsCard from './NewsCard';
 import getTodayTimeUnix from '../helperfunctions/helperfunction.js'
+import axios from 'axios';
 const finKey = process.env.REACT_APP_API_KEY;
 
 export default function MainContent() {
@@ -21,19 +22,35 @@ export default function MainContent() {
     const api_key = finnhub.ApiClient.instance.authentications['api_key'];
     api_key.apiKey = finKey;
     const finnhubClient = new finnhub.DefaultApi()
-
-    finnhubClient.marketNews("general", {}, (error, data, response) => {
-        setInfo(data.slice(0,10));
+    axios.get('/api/market-news').then((response) => {
+        setInfo(response.data);
     });
-    finnhubClient.stockCandles("TSLA", "5", start/1000,end/1000, (error, data, response) => {
-        setStock1(data);
+    // finnhubClient.marketNews("general", {}, (error, data, response) => {
+    //     setInfo(data.slice(0,10));
+    // });
+    axios.get('/api/stock-candles').then((res)=>{
+        res.data.forEach((obj)=>{
+            if(obj.symbol=="TSLA"){
+                setStock1(obj.data);
+                console.log(obj.data);
+            }
+            else if(obj.symbol=='AAPL'){
+                setStock2(obj.data);
+            }
+            else{
+                setStock3(obj.data);
+            }
+        });
     });
-    finnhubClient.stockCandles("AAPL", "5", start/1000,end/1000, (error, data, response) => {
-        setStock2(data);
-    });
-    finnhubClient.stockCandles("GOOGL", "5", start/1000,end/1000, (error, data, response) => {
-        setStock3(data);
-    });
+    // finnhubClient.stockCandles("TSLA", "5", start/1000,end/1000, (error, data, response) => {
+    //     setStock1(data);
+    // });
+    // finnhubClient.stockCandles("AAPL", "5", start/1000,end/1000, (error, data, response) => {
+    //     setStock2(data);
+    // });
+    // finnhubClient.stockCandles("GOOGL", "5", start/1000,end/1000, (error, data, response) => {
+    //     setStock3(data);
+    // });
     finnhubClient.quote("TSLA", (error, data, response) => {
         setSymData1(data);
     });
