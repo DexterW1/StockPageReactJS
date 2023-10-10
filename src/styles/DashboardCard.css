@@ -7,23 +7,33 @@
     /* border: 2px solid white */
     border-radius: 20px;
     background-color: var(--surface);
-    height: 16.8rem;
+    height: 17rem;
     width: 23rem;
+}
+.stock-name{
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 .stock-data{
     border-bottom: 1px solid var(--outline);
 }
 .stock-info{
     display: flex;
-    margin: 1rem 1rem;
+    margin: .2rem .3rem;
     color: #F2F3F5;
 }
 .stock-info .col1{
-    margin-right: 8rem;
+    margin-right: 4rem;
 }
 
 @media (max-width: 1500px) {
     .dashboard-card{
         width: 20rem;
+    }
+    .stock-info .col1{
+        font-size: .8rem;
+    }
+    .stock-info .col2{
+        font-size: .77rem;
     }
 }

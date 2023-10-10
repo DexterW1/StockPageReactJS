@@ -3,12 +3,20 @@ import '../styles/MainContent.css'
 import GraphCard from './GraphCard'
 import DashboardCard from './DashboardCard';
 import NewsCard from './NewsCard';
+import getTodayTimeUnix from '../helperfunctions/helperfunction.js'
 const finKey = process.env.REACT_APP_API_KEY;
 
 export default function MainContent() {
   const[activeButton,setactiveButton]=useState('dashboard');  
   const[info,setInfo]=useState([]);
+  const[stock1,setStock1]=useState([]);
+  const[stock2,setStock2]=useState([]);
+  const[stock3,setStock3]=useState([]);
+  const[symData1,setSymData1]=useState([]);
+  const[symData2,setSymData2]=useState([]);
+  const[symData3,setSymData3]=useState([]);
   useEffect(()=>{
+    const {start,end} = getTodayTimeUnix();
     const finnhub = require('finnhub');
     const api_key = finnhub.ApiClient.instance.authentications['api_key'];
     api_key.apiKey = finKey;
@@ -17,6 +25,25 @@ export default function MainContent() {
     finnhubClient.marketNews("general", {}, (error, data, response) => {
         setInfo(data.slice(0,10));
     });
+    finnhubClient.stockCandles("TSLA", "5", start/1000,end/1000, (error, data, response) => {
+        setStock1(data);
+    });
+    finnhubClient.stockCandles("AAPL", "5", start/1000,end/1000, (error, data, response) => {
+        setStock2(data);
+    });
+    finnhubClient.stockCandles("GOOGL", "5", start/1000,end/1000, (error, data, response) => {
+        setStock3(data);
+    });
+    finnhubClient.quote("TSLA", (error, data, response) => {
+        setSymData1(data);
+    });
+    finnhubClient.quote("AAPL", (error, data, response) => {
+        setSymData2(data);
+    });
+    finnhubClient.quote("GOOGL", (error, data, response) => {
+        setSymData3(data);
+    });
+
   },[]);
   return (
     <>
@@ -40,9 +67,9 @@ export default function MainContent() {
                 {activeButton==='dashboard'&&(
                     <>
                         <div className="dashboard-card-container">
-                            <DashboardCard stockName='Tesla'/>
-                            <DashboardCard stockName='Apple'/>
-                            <DashboardCard stockName='Google'/>
+                            <DashboardCard stockName='Tesla' Data={stock1} tickerSym={symData1}/>
+                            <DashboardCard stockName='Apple' Data={stock2} tickerSym={symData2}/>
+                            <DashboardCard stockName='Google' Data={stock3} tickerSym={symData3}/>
                         </div>
                         <div className="news-header">
                             <h2>News</h2>
