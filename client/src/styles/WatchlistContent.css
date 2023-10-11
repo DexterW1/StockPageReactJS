@@ -17,8 +17,8 @@
     content: '';
     position: absolute;
     bottom: 0;
-    width: 95%; /* Adjust this percentage as needed */
-    height: 1px;
-    background-color: var(--outline);
+    width: 15%; /* Adjust this percentage as needed */
+    height: 3px;
+    background-color: whitesmoke;
     z-index: 1;
 }

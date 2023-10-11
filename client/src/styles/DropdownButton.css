@@ -37,21 +37,21 @@
 .filter-options p{
     font-size: .8rem;
     margin-left: .5rem;
-    color: whitesmoke;
+    color: rgb(139, 138, 138);
     margin-top: .5rem;
 }
 
-.dropdown-options{
+.dropdown-options,.dropdown-direction{
     text-align: center;
     color:whitesmoke;
+    margin-top: .5rem;
 }
-.dropdown-options li{
+.dropdown-options li,.dropdown-direction li{
     padding: .5rem;
     font-size: .9rem;
 }
 
-.dropdown-options li:hover{
-
+.dropdown-options li:hover,.dropdown-direction li:hover{
     cursor: pointer;
     background-color: gray;
     width: 100%;
