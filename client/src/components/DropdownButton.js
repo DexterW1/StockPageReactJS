@@ -2,10 +2,10 @@ import React,{useState,useRef} from 'react'
 import '../styles/DropdownButton.css'
 export default function DropdownButton() {
     const [buttonText,setButtonText]=useState("Sort by Name");
-    const [selectedItem,setSelectedItem]=useState(null);
+    const [selectedItem,setSelectedItem]=useState(0);
     const [sortDirection,setSortDirection]=useState(0);
     const [isDropDownOpen,setDropDownOpen]=useState(false);
-    const [ascCheckMark,setAscCheckMark]=useState(false);
+    const [ascCheckMark,setAscCheckMark]=useState(6);
 
     const sortList = ["Name","Symbol","Price","Day Change","Day % Change"]
     function handleOptionClick(index,btnText){
