@@ -1,0 +1,58 @@
+.dropdown-wrapper{
+    position: relative;
+}
+.btnicon-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid blue; */
+    padding: .5rem;
+    /* border: 1px solid pink; */
+    border-radius: 20px;
+    margin-right: 3rem;
+}
+.btnicon-header ion-icon{
+    color: rgba(255, 255, 255, 0.247);
+    margin-right: .3rem;
+}
+
+.ButtonHeader{
+    color:#0074E4;
+}
+.btnicon-header:hover{
+    transition: background-color .8s ease;
+    background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha (last) value to control opacity */
+}
+.btnicon-header:hover ion-icon{
+    color:rgb(14, 13, 13);
+}
+.filter-options{
+    position: absolute;
+    /* border: 1px solid green; */
+    border-radius: 10px;
+    width: 12rem;
+    z-index: 1;
+    background-color: var(--surface);
+}
+.filter-options p{
+    font-size: .8rem;
+    margin-left: .5rem;
+    color: whitesmoke;
+    margin-top: .5rem;
+}
+
+.dropdown-options{
+    text-align: center;
+    color:whitesmoke;
+}
+.dropdown-options li{
+    padding: .5rem;
+    font-size: .9rem;
+}
+
+.dropdown-options li:hover{
+
+    cursor: pointer;
+    background-color: gray;
+    width: 100%;
+}

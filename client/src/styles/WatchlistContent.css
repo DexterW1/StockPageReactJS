@@ -1,0 +1,24 @@
+.watchlist-header{
+    position: relative;
+    display: flex;
+    /* border: 1px solid green; */
+    padding: 1rem 2rem .2rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid var(--outline); */
+}
+.watchlist-header h2{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 1.5rem;
+    color: white;
+}
+.watchlist-header::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 95%; /* Adjust this percentage as needed */
+    height: 1px;
+    background-color: var(--outline);
+    z-index: 1;
+}
