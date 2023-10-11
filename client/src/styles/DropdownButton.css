@@ -16,6 +16,9 @@
 
 .ButtonHeader{
     color:#0074E4;
+    background:none;
+    border: none;
+    cursor: pointer;
 }
 .btnicon-header:hover{
     transition: background-color .5s ease;

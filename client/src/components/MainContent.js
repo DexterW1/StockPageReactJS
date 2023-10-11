@@ -96,17 +96,17 @@ export default function MainContent() {
             <div className="right-side-menu">
                 <div className="right-card">
                     <div className="dowjones-card">
-                        <h1>Dow Jones</h1>
+                        <h3>Dow Jones</h3>
                     </div>
                 </div>
                 <div className="right-card">
                     <div className="nasdaq-card">
-                        <h1>NASDAQ</h1>
+                        <h3>NASDAQ</h3>
                     </div>
                 </div>
                 <div className="right-card">
                     <div className="sp500-card">
-                        <h1>S&P 500</h1>
+                        <h3>S&P 500</h3>
                     </div>
                 </div>
 
