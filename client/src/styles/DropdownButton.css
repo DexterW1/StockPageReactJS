@@ -5,9 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid blue; */
     padding: .5rem;
-    /* border: 1px solid pink; */
     border-radius: 20px;
     margin-right: 3rem;
 }
@@ -20,7 +18,7 @@
     color:#0074E4;
 }
 .btnicon-header:hover{
-    transition: background-color .8s ease;
+    transition: background-color .5s ease;
     background-color: rgba(255, 255, 255, 0.1); /* Adjust the alpha (last) value to control opacity */
 }
 .btnicon-header:hover ion-icon{
@@ -28,7 +26,6 @@
 }
 .filter-options{
     position: absolute;
-    /* border: 1px solid green; */
     border-radius: 10px;
     width: 12rem;
     z-index: 1;
