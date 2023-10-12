@@ -27,9 +27,9 @@ export default function GraphCard() {
       function createWidget() {
         if (document.getElementById('tradingview_c4f5c') && 'TradingView' in window) {
           new window.TradingView.widget({
-            autosize: false,
-            height:700,
-            width:1200,
+            autosize: true,
+            width:"100%",
+            height:"100%",
             symbol: `NASDAQ:AAPL`,
             interval: "D",
             timezone: "Etc/UTC",

@@ -10,7 +10,6 @@ router.get('/stock-candles', async (req, res) => {
     const { start, end } = getTodayTimeUnix();
     const api_key = finnhub.ApiClient.instance.authentications['api_key'];
     api_key.apiKey = finKey;
-
     const finnhubClient = new finnhub.DefaultApi();
     // Define an array of stock symbols you want to fetch
     const stockSymbols = ["TSLA", "AAPL", "GOOGL"]; // Add more symbols as needed
