@@ -22,3 +22,13 @@
     background-color: whitesmoke;
     z-index: 1;
 }
+/*=================================== Main Content USER WATCHLIST ========================= */
+.userwatchlist-container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    color: whitesmoke;
+    margin: 1.5rem;
+    border-radius: 20px;
+    background:var(--surface);
+}

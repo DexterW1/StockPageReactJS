@@ -1,19 +1,23 @@
-import React,{useState,useEffect,useRef} from 'react';
+import React,{useState,useEffect,useRef, useContext} from 'react';
 import '../styles/TopBar.css';
-
+import axios from 'axios'
 const nasdaqTicker = './tickerData/nasdaq_tickers.json';
 const nyseTicker = '/tickerData/nyse_tickers.json';
 const nasdaqFull = './tickerData/nasdaq_full_tickers.json';
 const nyseFull = './tickerData/nyse_full_tickers.json';
 
 
-export default function TopBar() {
+export default function TopBar({onSearch}) {
   const [searchInput,setSearchInput]= useState('');
   const [combinedSymb, setCombinedSymb] = useState([]);
   const [combinedFull, setCombinedFull] = useState([]);
   const [autocompleteData, setAutocompleteData] = useState([]);
   const inputRef=useRef(null);
-
+  function handleSearch(symbol){
+    axios.post('/api/postSymbol',{symbol})
+      .then(()=>{}).catch(error=>{console.log(error);});
+    onSearch(symbol);
+  }
   useEffect(()=>{
     async function fetchData(){
       const resNas = await fetch(nasdaqTicker);
@@ -86,6 +90,7 @@ export default function TopBar() {
                         <li key={obj.symbol} onClick={()=>{
                           setSearchInput(obj.symbol+': '+obj.name);
                           setAutocompleteData([]);
+                          handleSearch(obj.symbol);
                         }}
                       >
                         <strong>{obj.symbol}: {obj.name}</strong>

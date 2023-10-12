@@ -7,6 +7,7 @@ const routes = require('./routes/index.js');
 require('dotenv').config();
 
 app.use(cors()); // Enable CORS for all routes
+app.use(express.json());
 app.use(routes);
 
 app.listen(port,()=>{
