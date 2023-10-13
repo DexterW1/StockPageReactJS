@@ -2,14 +2,17 @@ import React,{useState,useEffect,useRef} from 'react'
 import axios from 'axios'
 import '../styles/WatchlistContent.css'
 import DropdownButton from './DropdownButton'
-
-
+import Decimal from 'decimal.js'
 export default function WatchlistContent({postSymbol}) {
   const [watchlistData,setWatchlistData]=useState([]);
   const isInitialMount = useRef(true);
   function handleDeleteRow(symbol){
     const updatedList= watchlistData.filter((item)=> item.symbol!==symbol);
     setWatchlistData(updatedList);
+  }
+  function handleRound(number){
+    const originalNumber = new Decimal(number)
+    return originalNumber.toDecimalPlaces(2).toNumber();
   }
   useEffect(()=>{
     const symbol = postSymbol;
@@ -18,7 +21,8 @@ export default function WatchlistContent({postSymbol}) {
       if(symbol !=='' && !watchlistData.some(item => item.symbol === symbol)){
         axios.post('/api/postsymbol/sendsymbol',{symbol})
           .then((res)=>{
-            console.log(res.data)
+            res.data.data.color = res.data.data.dp < 0 ? 1 : 0;
+            console.log(res.data);
             setWatchlistData((prevResults) => [...prevResults, res.data]);
           }).catch((error)=>{console.log(error);})
       }
@@ -50,9 +54,9 @@ export default function WatchlistContent({postSymbol}) {
                   <tr key={item.symbol}>
                     <td>{item.symbol}</td>
                     <td>{item.name}</td>
-                    <td>{item.data.c}</td>
-                    <td>{item.data.d}</td>
-                    <td>{item.data.dp}</td>
+                    <td>${item.data.c}</td>
+                    <td className={item.data.color === 1 ? 'colorred' : 'colorgreen'}>{item.data.d}</td>
+                    <td className={item.data.color === 1 ? 'colorred' : 'colorgreen'}>{handleRound(item.data.dp)}%</td>
                     <td><button className='btn' onClick={()=>handleDeleteRow(item.symbol)}><ion-icon name="close-circle-outline"></ion-icon></button></td>
                   </tr>
                 ))}

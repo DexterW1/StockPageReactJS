@@ -26,7 +26,7 @@
 .userwatchlist-container{
     display: flex;
     flex-direction: column;
-    padding: 1rem 1rem;
+    padding: 1rem 1rem 0 1rem;
     color: whitesmoke;
     margin: 1.5rem 1.5rem 0 1.5rem;
     border-radius: 20px;
@@ -50,26 +50,34 @@ table td{
     border-top: 1px solid var(--outline);
     padding:.5rem .2rem;
 }
-table button{
+table button {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     background: var(--surface);
-    border-style: none;
+    border: none; /* Simplified the border style */
     border-radius: 50%;
-    padding: 1px;
-    align-items: center;
     cursor: pointer;
-}
-table button:hover{
+    width: 38px; /* Set a fixed width to make the button circular */
+    height: 38px; /* Set a fixed height to make the button circular */
+  }
+  
+  table button:hover {
     background-color: whitesmoke;
-}
-table button:hover ion-icon{
+  }
+  
+  table button:hover ion-icon {
     color: black;
-}
-button ion-icon{
+  }
+  
+  button ion-icon {
     color: white;
     width: 23px;
     height: 23px;
-}
+  }
+  .colorred{
+    color: red;
+  }
+  .colorgreen{
+    color:green;
+  }
