@@ -15,6 +15,7 @@ export default function TopBar({onSearch}) {
   const inputRef=useRef(null);
   function handleSearch(symbol){
     onSearch(symbol);
+    
   }
   useEffect(()=>{
     async function fetchData(){

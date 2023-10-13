@@ -19,8 +19,8 @@ router.get('/stock-candles', async (req, res) => {
         finnhubClient.stockCandles(
           symbol,
           "5",
-          start / 1000,
-          end / 1000,
+          start,
+          end,
           (error, data, response) => {
             if (error) {
               reject(error);

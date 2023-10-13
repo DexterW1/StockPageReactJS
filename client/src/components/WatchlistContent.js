@@ -9,21 +9,33 @@ export default function WatchlistContent({postSymbol}) {
   function handleDeleteRow(symbol){
     const updatedList= watchlistData.filter((item)=> item.symbol!==symbol);
     setWatchlistData(updatedList);
+    saveDataToLocalStorage(updatedList);
   }
   function handleRound(number){
     const originalNumber = new Decimal(number)
     return originalNumber.toDecimalPlaces(2).toNumber();
   }
+  function saveDataToLocalStorage(data){
+    localStorage.setItem('watchlistData',JSON.stringify(data));
+  }
+  function loadSavedData(){
+    const savedData = localStorage.getItem('watchlistData')
+    if(savedData){
+      setWatchlistData(JSON.parse(savedData));
+    }
+  }
   useEffect(()=>{
     const symbol = postSymbol;
-    console.log(symbol,"symbol entered");
     if(!isInitialMount.current){
+      loadSavedData();
+      console.log(watchlistData);
       if(symbol !=='' && !watchlistData.some(item => item.symbol === symbol)){
         axios.post('/api/postsymbol/sendsymbol',{symbol})
           .then((res)=>{
             res.data.data.color = res.data.data.dp < 0 ? 1 : 0;
-            console.log(res.data);
-            setWatchlistData((prevResults) => [...prevResults, res.data]);
+            const prevResultsData = [...watchlistData,res.data];
+            setWatchlistData(prevResultsData);
+            saveDataToLocalStorage(prevResultsData);
           }).catch((error)=>{console.log(error);})
       }
     }
