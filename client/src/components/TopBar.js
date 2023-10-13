@@ -14,8 +14,6 @@ export default function TopBar({onSearch}) {
   const [autocompleteData, setAutocompleteData] = useState([]);
   const inputRef=useRef(null);
   function handleSearch(symbol){
-    axios.post('/api/postSymbol',{symbol})
-      .then(()=>{}).catch(error=>{console.log(error);});
     onSearch(symbol);
   }
   useEffect(()=>{

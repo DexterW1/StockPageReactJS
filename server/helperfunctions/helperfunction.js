@@ -1,3 +1,4 @@
+
 module.exports = function getTodayTimeUnix() {
   const now = new Date();
   const dayOfWeek = now.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
@@ -60,6 +61,5 @@ module.exports = function getTodayTimeUnix() {
   const endOfDayUTC = new Date(
     endOfDayPDT.getTime() - utcOffset * 60000
   ).getTime();
-
   return { start: startOfDayUTC, end: endOfDayUTC };
 };

@@ -12,7 +12,7 @@ const postSymbol = require('./postSymbol');
 router.use('/api', marketNewsRoutes);
 router.use('/api',stockCandlesRoutes);
 router.use('/api',quoteRoutes);
-router.use('/api',postSymbol);
+router.use('/api/postsymbol',postSymbol);
 // Use other route files as needed
 
 module.exports = router;

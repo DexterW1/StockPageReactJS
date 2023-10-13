@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const finKey = process.env.API_KEY;
-const getTodayTimeUnix = require('../helperfunctions/helperfunction');
+const getTodayTimeUnix = require('../helperfunctions/helperfunction.js');
 const finnhub = require('finnhub'); // Import finnhub here
 
 // Define an API route to fetch market news data
 router.get('/stock-candles', async (req, res) => {
   try {
-    const { start, end } = getTodayTimeUnix();
+    const {start, end } = getTodayTimeUnix();
     const api_key = finnhub.ApiClient.instance.authentications['api_key'];
     api_key.apiKey = finKey;
     const finnhubClient = new finnhub.DefaultApi();

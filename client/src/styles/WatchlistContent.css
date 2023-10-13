@@ -28,7 +28,48 @@
     flex-direction: column;
     padding: 1rem 1rem;
     color: whitesmoke;
-    margin: 1.5rem;
+    margin: 1.5rem 1.5rem 0 1.5rem;
     border-radius: 20px;
     background:var(--surface);
+}
+.table-container table{
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+table th{
+    font-weight: bold;
+    font-size: 1.3rem;
+    /* border-bottom: 1px solid var(--outline); */
+    padding-bottom: .5rem;
+}
+table th,td{
+    text-align: left;
+}
+table td{
+    border-top: 1px solid var(--outline);
+    padding:.5rem .2rem;
+}
+table button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--surface);
+    border-style: none;
+    border-radius: 50%;
+    padding: 1px;
+    align-items: center;
+    cursor: pointer;
+}
+table button:hover{
+    background-color: whitesmoke;
+}
+table button:hover ion-icon{
+    color: black;
+}
+button ion-icon{
+    color: white;
+    width: 23px;
+    height: 23px;
 }
