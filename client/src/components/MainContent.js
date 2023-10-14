@@ -6,7 +6,7 @@ import NewsCard from './NewsCard';
 import axios from 'axios';
 import WatchlistContent from './WatchlistContent';
 
-export default function MainContent({stockSymbol}) {
+export default function MainContent({watchlistData,setWatchlistData}) {
   const[activeButton,setactiveButton]=useState('dashboard');  
   const[info,setInfo]=useState([]);
   const[stock1,setStock1]=useState([]);
@@ -89,7 +89,7 @@ export default function MainContent({stockSymbol}) {
                 </div>
                 {activeButton==='watchlist'&&(
                     <div className="watchlist-card">
-                        <WatchlistContent postSymbol = {stockSymbol}/>
+                        <WatchlistContent setWatchlistData={setWatchlistData} watchlistData ={watchlistData} />
                     </div>
                 )}
             </div>

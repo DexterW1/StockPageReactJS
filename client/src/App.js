@@ -4,16 +4,14 @@ import './variable.css';
 import TopBar from './components/TopBar';
 import MainContent from './components/MainContent';
 function App() {
-  const [stockSymbol,setStockSymbol]=useState('');
   const [watchlistData,setWatchlistData]=useState([]);
   return (
     <>
       <div className="top-bar">
-        <TopBar onSearch={setStockSymbol}/>
-        {/* <TopBar onSearch={setWatchlistData}/> */}
+        <TopBar watchlistData={watchlistData} setWatchlistData={setWatchlistData} />
       </div>
       <div className="main-content">
-        <MainContent stockSymbol={stockSymbol}/>
+        <MainContent watchlistData={watchlistData} setWatchlistData={setWatchlistData}/>
       </div>
     </>
   );

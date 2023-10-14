@@ -3,9 +3,9 @@ import axios from 'axios'
 import '../styles/WatchlistContent.css'
 import DropdownButton from './DropdownButton'
 import Decimal from 'decimal.js'
-export default function WatchlistContent({postSymbol}) {
-  const [watchlistData,setWatchlistData]=useState([]);
-  const isInitialMount = useRef(true);
+export default function WatchlistContent({watchlistData,setWatchlistData}) {
+  // const [watchlistData,setWatchlistData]=useState([]);
+  // const isInitialMount = useRef(true);
   function handleDeleteRow(symbol){
     const updatedList= watchlistData.filter((item)=> item.symbol!==symbol);
     setWatchlistData(updatedList);
@@ -16,33 +16,8 @@ export default function WatchlistContent({postSymbol}) {
     return originalNumber.toDecimalPlaces(2).toNumber();
   }
   function saveDataToLocalStorage(data){
-    localStorage.setItem('watchlistData',JSON.stringify(data));
+    localStorage.setItem('watchlistdata',JSON.stringify(data));
   }
-  function loadSavedData(){
-    const savedData = localStorage.getItem('watchlistData')
-    if(savedData){
-      setWatchlistData(JSON.parse(savedData));
-    }
-  }
-  useEffect(()=>{
-    const symbol = postSymbol;
-    if(!isInitialMount.current){
-      loadSavedData();
-      console.log(watchlistData);
-      if(symbol !=='' && !watchlistData.some(item => item.symbol === symbol)){
-        axios.post('/api/postsymbol/sendsymbol',{symbol})
-          .then((res)=>{
-            res.data.data.color = res.data.data.dp < 0 ? 1 : 0;
-            const prevResultsData = [...watchlistData,res.data];
-            setWatchlistData(prevResultsData);
-            saveDataToLocalStorage(prevResultsData);
-          }).catch((error)=>{console.log(error);})
-      }
-    }
-    else{
-      isInitialMount.current=false;
-    }
-  },[postSymbol]);
   return (
     <>
         <div className="watchlist-header">

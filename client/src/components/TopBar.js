@@ -7,15 +7,34 @@ const nasdaqFull = './tickerData/nasdaq_full_tickers.json';
 const nyseFull = './tickerData/nyse_full_tickers.json';
 
 
-export default function TopBar({onSearch}) {
+export default function TopBar({watchlistData,setWatchlistData}) {
   const [searchInput,setSearchInput]= useState('');
   const [combinedSymb, setCombinedSymb] = useState([]);
   const [combinedFull, setCombinedFull] = useState([]);
   const [autocompleteData, setAutocompleteData] = useState([]);
   const inputRef=useRef(null);
+  function saveDataToLocalStorage(data){
+    localStorage.setItem('watchlistdata',JSON.stringify(data));
+  }
+  function loadSavedData(){
+    const savedData = localStorage.getItem('watchlistdata');
+    if(savedData){
+      setWatchlistData(JSON.parse(savedData));
+    }
+  }
   function handleSearch(symbol){
-    onSearch(symbol);
-    
+    if(symbol !=='' && !watchlistData.some(item => item.symbol === symbol)){
+      axios.post('api/postsymbol/sendsymbol',{symbol})
+        .then((res)=>{
+          res.data.data.color = res.data.data.dp < 0 ? 1 : 0;
+          const prevResultsData = [...watchlistData,res.data];
+          setWatchlistData(prevResultsData);
+          saveDataToLocalStorage(prevResultsData);
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+    }
   }
   useEffect(()=>{
     async function fetchData(){
@@ -38,6 +57,7 @@ export default function TopBar({onSearch}) {
       setCombinedFull(combinedData);
     }
     fetchData();
+    loadSavedData();
   },[]);
   useEffect(()=>{
     if(!searchInput){
