@@ -70,7 +70,11 @@ export default function TopBar({watchlistData,setWatchlistData}) {
   },[searchInput]);
 
   function updateResult(userInput){
-    return combinedFull.filter((symbol)=>symbol.symbol.includes(userInput.toUpperCase())).slice(0,10);
+    const results = combinedFull.filter((item)=>{
+      return item.symbol.includes(userInput.toUpperCase()) ||item.name.toUpperCase().includes(userInput.toUpperCase());
+    })
+    return results.slice(0,10);
+    // return combinedFull.filter((symbol)=>symbol.symbol.includes(userInput.toUpperCase())).slice(0,10);
   }
 
   useEffect(() => {

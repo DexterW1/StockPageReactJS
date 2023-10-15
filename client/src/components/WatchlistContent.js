@@ -7,7 +7,6 @@ import { endOfToday } from 'date-fns'
 export default function WatchlistContent({watchlistData,setWatchlistData}) {
   const [filterVariable,setFilterVariable] = useState ('Name');
   const [filterDirection,setFilterDirection] = useState(0);
-  const [rerenderData,setRerenderData] = useState(watchlistData);
   function handleDeleteRow(symbol){
     const updatedList= watchlistData.filter((item)=> item.symbol!==symbol);
     setWatchlistData(updatedList);
