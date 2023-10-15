@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react'
 import '../styles/DropdownButton.css'
-export default function DropdownButton() {
+export default function DropdownButton({setFilterDirection,setFilterVariable}) {
     const [buttonText,setButtonText]=useState("Sort by Name");
     const [selectedItem,setSelectedItem]=useState(0);
     const [sortDirection,setSortDirection]=useState(0);
@@ -17,6 +17,7 @@ export default function DropdownButton() {
         }
         setDropDownOpen(!isDropDownOpen);
         setButtonText("Sort by "+btnText);
+        setFilterVariable(btnText);
 
     }
     function handleOrderClick(index,btnText){
@@ -29,9 +30,11 @@ export default function DropdownButton() {
         setDropDownOpen(!isDropDownOpen);
         if(btnText==="Ascending (A-Z)"){
             setSortDirection(0);
+            setFilterDirection(0);
         }
         else{
             setSortDirection(1);
+            setFilterDirection(1);
         }
     }
     function toggleDropDown(){

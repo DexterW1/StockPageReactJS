@@ -6,7 +6,7 @@ export default function NewsCard(props) {
     <>
         <div className="news-container">
           {info.map((newsItem, index) => (
-            <div className="card-container" key={index}>
+            <div className="card-container" key={newsItem.id}>
               <a href={newsItem.url}><h2>{newsItem.headline}</h2></a>
               <div className="card-summary">
                 <img src={newsItem.image} alt={newsItem.headline} width={110} height={130}/>

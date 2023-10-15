@@ -3,9 +3,11 @@ import axios from 'axios'
 import '../styles/WatchlistContent.css'
 import DropdownButton from './DropdownButton'
 import Decimal from 'decimal.js'
+import { endOfToday } from 'date-fns'
 export default function WatchlistContent({watchlistData,setWatchlistData}) {
-  // const [watchlistData,setWatchlistData]=useState([]);
-  // const isInitialMount = useRef(true);
+  const [filterVariable,setFilterVariable] = useState ('Name');
+  const [filterDirection,setFilterDirection] = useState(0);
+  const [rerenderData,setRerenderData] = useState(watchlistData);
   function handleDeleteRow(symbol){
     const updatedList= watchlistData.filter((item)=> item.symbol!==symbol);
     setWatchlistData(updatedList);
@@ -18,11 +20,85 @@ export default function WatchlistContent({watchlistData,setWatchlistData}) {
   function saveDataToLocalStorage(data){
     localStorage.setItem('watchlistdata',JSON.stringify(data));
   }
+  function handleClearAll(){
+    setWatchlistData([]);
+    localStorage.clear();
+  }
+  useEffect(()=>{
+    console.log(filterVariable);
+    if(filterDirection===0){
+      if(filterVariable==="Name"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return a.name.localeCompare(b.name);
+        })
+        setWatchlistData(sortedData);
+      }
+      else if(filterVariable==="Symbol"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return a.symbol.localeCompare(b.symbol);
+        })
+        setWatchlistData(sortedData);
+      }
+      else if(filterVariable==="Price"){
+        console.log("entered price");
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return a.data.c - b.data.c;
+        })
+        console.log(sortedData);
+        setWatchlistData(sortedData);
+      }
+      else if(filterVariable==="Day Change"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return b.data.d - a.data.d;
+        })
+        setWatchlistData(sortedData);
+      }
+      else{
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return b.data.dp - a.data.dp;
+        })
+        setWatchlistData(sortedData);
+      }
+    }
+    else{
+      if(filterVariable==="Name"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return b.name.localeCompare(a.name);
+        })
+        setWatchlistData(sortedData);
+      }
+      else if(filterVariable==="Symbol"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return b.symbol.localeCompare(a.symbol);
+        })
+        setWatchlistData(sortedData);
+      }
+      else if(filterVariable==="Price"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          console.log(b.c,"   ",a.c);
+          return b.data.c - a.data.c;
+        })
+        setWatchlistData(sortedData);
+      }
+      else if(filterVariable==="Day Change"){
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return a.data.d - b.data.d;
+        })
+        setWatchlistData(sortedData);
+      }
+      else{
+        const sortedData = [...watchlistData].sort((a,b)=>{
+          return a.data.dp - b.data.dp;
+        })
+        setWatchlistData(sortedData);
+      }
+    }
+  },[filterVariable,filterDirection]);
   return (
     <>
         <div className="watchlist-header">
             <h2>Watchlist</h2>
-            <DropdownButton/>
+            <DropdownButton setFilterDirection={setFilterDirection} setFilterVariable={setFilterVariable}/>
         </div>
         <div className="userwatchlist-container">
           <div className="table-container">
@@ -34,6 +110,7 @@ export default function WatchlistContent({watchlistData,setWatchlistData}) {
                   <th>Price</th>
                   <th>Change</th>
                   <th>% Change</th>
+                  <th><button onClick= {()=>handleClearAll()}className='delete-all-btn'>Clear</button></th>
                 </tr>
               </thead>
               <tbody>

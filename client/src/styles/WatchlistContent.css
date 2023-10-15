@@ -32,11 +32,37 @@
     border-radius: 20px;
     background:var(--surface);
 }
+.table-container{
+  overflow-y: scroll;
+  max-height: 71vh;
+}
+.table-container::-webkit-scrollbar {
+  background-color: var(--surface);
+  width: 14px;
+}
+
+/* background of the scrollbar except button or resizer */
+.table-container::-webkit-scrollbar-track {
+  background-color: var(--surface);
+}
+
+/* scrollbar itself */
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 4px solid var(--surface);
+}
+
+/* set button(top and bottom of the scrollbar) */
+.table-container::-webkit-scrollbar-button {
+  display:none;
+}
 .table-container table{
     width: 100%;
     height: 100%;
     border-collapse: collapse;
 }
+
 table th{
     font-weight: bold;
     font-size: 1.3rem;
@@ -50,7 +76,23 @@ table td{
     border-top: 1px solid var(--outline);
     padding:.5rem .2rem;
 }
-table button {
+.delete-all-btn{
+  font-style: var(--ff-quicksand);
+  background-color: #8971d0;
+  border-radius: var(--radius-pill);
+  border: none;
+  color: whitesmoke;
+  width: 4rem;
+  height: 2rem;
+  padding: .3rem;
+  cursor: pointer;
+}
+.delete-all-btn:hover{
+  background-color: #7a5bd6;
+  transition: background-color .5s ease;
+}
+table tbody button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,13 +103,28 @@ table button {
     width: 38px; /* Set a fixed width to make the button circular */
     height: 38px; /* Set a fixed height to make the button circular */
   }
-  
-  table button:hover {
-    background-color: whitesmoke;
+  table tbody button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(233, 13, 13, 0.685) 0%, transparent 100%);
+    transition: width .5s, height .5s;
   }
   
-  table button:hover ion-icon {
+  table tbody button:hover::before {
+    width: 100%;
+    height: 100%;
+    transition: width .5s, height .5s;
+  }
+  
+  table tbody button:hover ion-icon {
     color: black;
+    transition:color .5s ease;
   }
   
   button ion-icon {

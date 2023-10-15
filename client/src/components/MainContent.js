@@ -80,13 +80,13 @@ export default function MainContent({watchlistData,setWatchlistData}) {
                         </div>
                     </>
                 )}
-                <div className="graph-container">
-                    {activeButton==='graph' && (
+                {activeButton==='graph' && (
+                    <div className="graph-container">
                         <div className="graph-card">
                             <GraphCard/>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
                 {activeButton==='watchlist'&&(
                     <div className="watchlist-card">
                         <WatchlistContent setWatchlistData={setWatchlistData} watchlistData ={watchlistData} />
