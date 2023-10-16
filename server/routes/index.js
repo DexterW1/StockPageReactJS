@@ -6,12 +6,14 @@ const marketNewsRoutes = require('./marketNewsRoute');
 const stockCandlesRoutes = require('./stockCandlesRoute');
 const quoteRoutes = require('./quoteRoute');
 const postSymbol = require('./postSymbol');
+const trendSymbol = require('./trendingsymbols');
 // Import other route files as needed
 
 // Use the routes
 router.use('/api', marketNewsRoutes);
 router.use('/api',stockCandlesRoutes);
 router.use('/api',quoteRoutes);
+router.use('/api',trendSymbol);
 router.use('/api/postsymbol',postSymbol);
 // Use other route files as needed
 

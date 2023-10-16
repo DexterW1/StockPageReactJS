@@ -9,9 +9,14 @@ import WatchlistContent from './WatchlistContent';
 export default function MainContent({watchlistData,setWatchlistData}) {
   const[activeButton,setactiveButton]=useState('dashboard');  
   const[info,setInfo]=useState([]);
+  //old dashbaord
   const[stock1,setStock1]=useState([]);
   const[stock2,setStock2]=useState([]);
   const[stock3,setStock3]=useState([]);
+  // New Dashboard
+  const[stockYahoo1,setStockYahoo1]=useState([]);
+  const[stockYahoo2,setStockYahoo2]=useState([]);
+  const[stockYahoo3,setStockYahoo3]=useState([]);
   const[symData1,setSymData1]=useState([]);
   const[symData2,setSymData2]=useState([]);
   const[symData3,setSymData3]=useState([]);
@@ -19,6 +24,11 @@ export default function MainContent({watchlistData,setWatchlistData}) {
     axios.get('/api/market-news').then((response) => {
         setInfo(response.data);
     });
+    axios.get('/api/trending').then((res)=>{
+        setStockYahoo1(res.data['^DJI']);
+        setStockYahoo2(res.data['^IXIC']);
+        setStockYahoo3(res.data['^GSPC']);
+    })
     axios.get('/api/stock-candles').then((res)=>{
         res.data.forEach((obj)=>{
             if(obj.symbol==="TSLA"){
@@ -68,9 +78,9 @@ export default function MainContent({watchlistData,setWatchlistData}) {
                 {activeButton==='dashboard'&&(
                     <>
                         <div className="dashboard-card-container">
-                            <DashboardCard stockName='Tesla' Data={stock1} tickerSym={symData1}/>
-                            <DashboardCard stockName='Apple' Data={stock2} tickerSym={symData2}/>
-                            <DashboardCard stockName='Google' Data={stock3} tickerSym={symData3}/>
+                            <DashboardCard stockName='Dow Jones' Data={stockYahoo1} tickerSym={symData1}/>
+                            <DashboardCard stockName='NASDAQ' Data={stockYahoo2} tickerSym={symData2}/>
+                            <DashboardCard stockName='S&P 500' Data={stockYahoo3} tickerSym={symData3}/>
                         </div>
                         <div className="news-header">
                             <h2>News</h2>

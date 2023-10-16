@@ -2,38 +2,66 @@ import React,{useState,useEffect, useRef} from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { format } from 'date-fns-tz';
 function formatYAxisLabel(value) {
-    // Format the Y-axis label to display cents
-    return `$${(value).toFixed(2)}`;
+    const roundedValue = parseFloat(value).toFixed(2);
+    return parseFloat(roundedValue).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
 }
+function formatDecimal(value){
+    return(value).toFixed(2);
+}
+function formatTimestamp(timestamp) {
+    return format(new Date(timestamp*1000),'HH:mm',{timeZone: 'America/Los_Angeles'});
+}
+function CustomTooltip({ active, payload }) {
+    if (active && payload && payload.length) {
+      const dataPoint = payload[0].payload; // Get the data point
+      return (
+        <div className="custom-tooltip" style={{margin:10}}>
+          <p style={{fontSize: 12}}>{`Time: ${dataPoint.date}`}</p>
+          <p style={{fontSize:12}}>{`Close Price: ${formatYAxisLabel(dataPoint.close)}`}</p>
+        </div>
+      );
+    }
+    return null;
+  }
 
 export default function ChartCard(props) {
     const {SymbolData} = props;
-    if (!SymbolData || !SymbolData.c || !SymbolData.t) {
+    if (!SymbolData || !SymbolData.quotes) {
         // Handle the case where data is not available
         return null; 
     }
-    const convertedData = SymbolData.c.map((c, index) => ({
-        c,
-        t: format(new Date(SymbolData.t[index] * 1000), 'HH:mm', { timeZone: 'America/Los_Angeles' }), 
+    // const convertedData = SymbolData.quotes.c.map((c, index) => ({
+    //     c,
+    //     t: format(new Date(SymbolData.t[index] * 1000), 'HH:mm', { timeZone: 'America/Los_Angeles' }), 
+    // }));
+    const convertedData = SymbolData.quotes.map((item)=>({
+        ...item,
+        close: formatDecimal(item.close),
+        date: formatTimestamp(item.date),
     }));
     const chartMargin = { top: 20, right:0, bottom: 6, left: 20 }; // Set all margins to 0
-    const lastDataPoint = convertedData[convertedData.length - 1].c;
-    const referenceLineY = convertedData[0].c;
+    const lastDataPoint = convertedData[convertedData.length - 1].close;
+    const referenceLineY = convertedData[0].close;
     const referenceLineStroke = lastDataPoint > referenceLineY ? 'green' : 'red';
   return (
     <>
         <div className="linechart-container">
                 <LineChart width={280} height={150} data={convertedData} margin={chartMargin}>
-                    <XAxis dataKey="t" />
+                    <XAxis dataKey="date" />
                     <YAxis 
                         type="number"
                         domain={['dataMin','dataMax']}
                         tickFormatter={formatYAxisLabel}
                         tick={{fontSize:12}}
                     />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="c" name="Close Price" stroke={referenceLineStroke} dot={false}/>
-                    <ReferenceLine y={convertedData[0].c} stroke="grey" strokeDasharray="5 5" />
+                    <Tooltip content={CustomTooltip} wrapperStyle={{background:'none'}}/>
+                    <Line type="monotone" dataKey="close" name="Close Price" stroke={referenceLineStroke} dot={false}/>
+                    <ReferenceLine y={convertedData[0].close} stroke="grey" strokeDasharray="5 5" />
                 </LineChart>
         </div>
     

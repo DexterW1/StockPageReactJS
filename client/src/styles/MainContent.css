@@ -89,7 +89,7 @@
 }
 /*==================================== RIGHT-SIDE MENU ================================ */
 .right-side-menu{
-  border-left: 1px solid var(--outline);
+  /* border-left: 1px solid var(--outline); */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
