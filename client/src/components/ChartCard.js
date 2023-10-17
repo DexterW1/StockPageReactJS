@@ -11,6 +11,7 @@ function formatYAxisLabel(value) {
     });
 }
 function formatDecimal(value){
+  // if(value===null) return 0;
     return(value).toFixed(2);
 }
 function formatTimestamp(timestamp) {
@@ -31,18 +32,17 @@ function CustomTooltip({ active, payload }) {
 
 export default function ChartCard(props) {
     const {SymbolData} = props;
+    // console.log(SymbolData);
     if (!SymbolData || !SymbolData.quotes) {
-        // Handle the case where data is not available
-        return null; 
+      // Handle the case where data is not available
+      return null; 
     }
-    // const convertedData = SymbolData.quotes.c.map((c, index) => ({
-    //     c,
-    //     t: format(new Date(SymbolData.t[index] * 1000), 'HH:mm', { timeZone: 'America/Los_Angeles' }), 
-    // }));
-    const convertedData = SymbolData.quotes.map((item)=>({
-        ...item,
-        close: formatDecimal(item.close),
-        date: formatTimestamp(item.date),
+    const convertedData = SymbolData.quotes
+    .filter(item => item.close !== null) // Filter out items with null values
+    .map(item => ({
+      ...item,
+      close: formatDecimal(item.close),
+      date: formatTimestamp(item.date),
     }));
     const chartMargin = { top: 20, right:0, bottom: 6, left: 20 }; // Set all margins to 0
     const lastDataPoint = convertedData[convertedData.length - 1].close;

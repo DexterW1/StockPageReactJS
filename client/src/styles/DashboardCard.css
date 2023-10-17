@@ -11,9 +11,13 @@
     width: 23rem;
 }
 .stock-name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: bold;
     font-size: 1rem;
-    
+    border-bottom: 1px solid var(--outline);
+    padding-bottom: .3rem;
 }
 .stock-data{
     border-bottom: 1px solid var(--outline);
@@ -25,6 +29,12 @@
 }
 .stock-info .col1{
     margin-right: 4rem;
+}
+.greencolor{
+    color: green;
+}
+.redcolor{
+    color: red;
 }
 
 @media (max-width: 1500px) {

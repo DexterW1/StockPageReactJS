@@ -9,10 +9,6 @@ import WatchlistContent from './WatchlistContent';
 export default function MainContent({watchlistData,setWatchlistData}) {
   const[activeButton,setactiveButton]=useState('dashboard');  
   const[info,setInfo]=useState([]);
-  //old dashbaord
-  const[stock1,setStock1]=useState([]);
-  const[stock2,setStock2]=useState([]);
-  const[stock3,setStock3]=useState([]);
   // New Dashboard
   const[stockYahoo1,setStockYahoo1]=useState([]);
   const[stockYahoo2,setStockYahoo2]=useState([]);
@@ -29,19 +25,6 @@ export default function MainContent({watchlistData,setWatchlistData}) {
         setStockYahoo2(res.data['^IXIC']);
         setStockYahoo3(res.data['^GSPC']);
     })
-    axios.get('/api/stock-candles').then((res)=>{
-        res.data.forEach((obj)=>{
-            if(obj.symbol==="TSLA"){
-                setStock1(obj.data);
-            }
-            else if(obj.symbol==='AAPL'){
-                setStock2(obj.data);
-            }
-            else{
-                setStock3(obj.data);
-            }
-        });
-    });
     axios.get('/api/quote').then((res)=>{
         res.data.forEach((obj)=>{
             if(obj.item==="TSLA"){
