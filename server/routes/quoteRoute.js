@@ -1,32 +1,30 @@
+const yahooFinance = require('yahoo-finance2').default
 const express = require('express');
 const router = express.Router();
 // require('dotenv').config();
 const finKey = process.env.API_KEY;
 
 router.get('/quote',async(req,res)=>{
-    try {
-        const finnhub = require('finnhub');
-        const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-        api_key.apiKey =finKey;
-        const finnhubClient = new finnhub.DefaultApi();
-        const symb = ["TSLA","AAPL","GOOGL"];
-        const promisedData = symb.map((item)=>{
-            return new Promise ((resolve,reject)=>{
-                finnhubClient.quote(item,(error,data,response)=>{
-                    if(error){
-                        reject(error);
-                    }
-                    else{
-                        resolve({item,data});
-                    }
-                });
-            });
-        });
-        const newData = await Promise.all(promisedData);
-        res.json(newData);
-    } catch (error) {
-        console.log(error);
-    }
+    const queryOptions = {modules:['price','summaryDetail']};
+    const result1 = await yahooFinance.quoteSummary('^IXIC',queryOptions);
+    const result2 = await yahooFinance.quoteSummary('^DJI',queryOptions);
+    const result3 = await yahooFinance.quoteSummary('^GSPC',queryOptions);
+
+    Promise.all([result1, result2, result3])
+     .then((results) => {
+        // Combine the results into a single JSON object
+        const combinedData = {
+        '^IXIC': results[0],
+        '^DJI': results[1],
+        '^GSPC': results[2],
+     };
+     // Send the combined data to the frontend
+     console.log(combinedData);
+     res.json(combinedData);
+     })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 });
 
 module.exports= router;

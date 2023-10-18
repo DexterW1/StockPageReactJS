@@ -13,6 +13,10 @@ function formatYAxisLabel(value) {
 }
 export default function DashboardCard(props) {
   const {stockName,Data,tickerSym}=props;
+  if (!Data || !Data.quotes || Data.quotes.length === 0) {
+    // Data is not available yet or doesn't have quotes, you can return a loading indicator or handle this case.
+    return <div>Loading...</div>;
+  }
   return (
     <>
         <div className="dashboard-card">

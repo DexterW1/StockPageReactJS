@@ -26,17 +26,9 @@ export default function MainContent({watchlistData,setWatchlistData}) {
         setStockYahoo3(res.data['^GSPC']);
     })
     axios.get('/api/quote').then((res)=>{
-        res.data.forEach((obj)=>{
-            if(obj.item==="TSLA"){
-                setSymData1(obj.data);
-            }
-            else if(obj.item==="AAPL"){
-                setSymData2(obj.data);
-            }
-            else{
-                setSymData3(obj.data);
-            }
-        });
+        setSymData1(res.data['^DJI']);
+        setSymData2(res.data['^IXIC']);
+        setSymData3(res.data['^GSPC']);
     });
   },[]);
   return (
