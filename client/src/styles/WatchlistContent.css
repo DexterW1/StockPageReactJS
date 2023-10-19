@@ -32,7 +32,7 @@
     border-radius: 20px;
     background:var(--surface);
 }
-.table-container{
+.table-container{ 
   overflow-y: scroll;
   max-height: 71vh;
 }
