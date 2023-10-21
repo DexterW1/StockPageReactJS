@@ -90,19 +90,70 @@
 /*==================================== RIGHT-SIDE MENU ================================ */
 .right-side-menu{
   /* border-left: 1px solid var(--outline); */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   font-size: 1rem;
 
 }
-.right-card{
+.right-side-header{
+  margin: .5rem 0 .3rem;
+  font-size: 1.6rem;
+  color: whitesmoke;
+  text-align: left;
+}
+.right-card{  
   display: flex;
-  height: 21vh;
-  margin: 0 2rem;
+  flex-direction: column;
+  /* justify-content: center; */
+  overflow-y: hidden;
+  height: 78vh;
+  margin: 0 1.2rem 0rem 0rem;
   background: var(--surface);
   border-radius: 10px;
-  padding: 1rem;
+  padding: .2rem 0 0 0;
   color: white;
   box-shadow: var(--shadow-2);
+}
+
+
+
+
+.right-card .small-cardb{
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background);
+  /* width: 100%; */
+  margin: 0;
+  padding: .1rem .8rem;
+}
+.right-card .small-cardb p,.small-cardl p{
+  font-size: .5rem;
+  color: gray;
+}
+.right-card .small-header h3{
+  font-size: 1rem;
+  /* border: 1px solid white; */
+}
+.right-card .small-cardl{
+  display: flex;
+  justify-content: space-between;
+  margin:0;
+  padding: .1rem .8rem;
+}
+.small-cardl .small-info, .small-cardb .small-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .3rem;
+  /* color: white; */
+}
+.small-cardb .small-info p,.small-cardl .small-info p{
+  margin: .3rem;
+  color: white;
+  font-size: .7rem;
+}
+.colorRed{
+  /* color: unset; */
+  color: red !important;
+}
+.colorGreen{
+  color: green !important;
 }

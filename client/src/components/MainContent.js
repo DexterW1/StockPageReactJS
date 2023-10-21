@@ -5,7 +5,18 @@ import DashboardCard from './DashboardCard';
 import NewsCard from './NewsCard';
 import axios from 'axios';
 import WatchlistContent from './WatchlistContent';
-
+function formatDollar(value) {
+    const roundedValue = parseFloat(value).toFixed(2);
+    return parseFloat(roundedValue).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+  }
+  function formatDecimal(value){
+      return(value).toFixed(2);
+  }
 export default function MainContent({watchlistData,setWatchlistData}) {
   const[activeButton,setactiveButton]=useState('dashboard');  
   const[info,setInfo]=useState([]);
@@ -16,6 +27,7 @@ export default function MainContent({watchlistData,setWatchlistData}) {
   const[symData1,setSymData1]=useState([]);
   const[symData2,setSymData2]=useState([]);
   const[symData3,setSymData3]=useState([]);
+  const[rightData,setRightData]=useState([]);
   useEffect(()=>{
     axios.get('/api/market-news').then((response) => {
         setInfo(response.data);
@@ -29,6 +41,10 @@ export default function MainContent({watchlistData,setWatchlistData}) {
         setSymData1(res.data['^DJI']);
         setSymData2(res.data['^IXIC']);
         setSymData3(res.data['^GSPC']);
+    });
+    axios.get('/api/trend').then((res)=>{
+        setRightData(res.data);
+        console.log(res.data);
     });
   },[]);
   return (
@@ -79,22 +95,28 @@ export default function MainContent({watchlistData,setWatchlistData}) {
                 )}
             </div>
             <div className="right-side-menu">
-                <div className="right-card">
-                    <div className="dowjones-card">
-                        <h3>Dow Jones</h3>
+                <h2 className='right-side-header'>Trending</h2>
+                {!rightData ? (<p>loading...</p>):(
+                    <div className="right-card">
+                        {rightData.map((obj,index)=>{
+                            return(
+                                <>
+                                    <div className={index%2===1 ? 'small-cardb':'small-cardl'}>
+                                        <div className='small-header'>
+                                            <h3>{obj.symbol}</h3>
+                                            <p>{obj.data.price.shortName}</p>
+                                        </div>
+                                        <div className="small-info">
+                                            <p id="regularprice">{formatDollar(obj.data.price.regularMarketPrice)}</p>
+                                            <p className={obj.data.price.regularMarketChange < 0 ? 'colorRed':'colorGreen'} id='regularchange'>{formatDecimal(obj.data.price.regularMarketChange)}</p>
+                                            <p className={obj.data.price.regularMarketChangePercent < 0 ? 'colorRed':'colorGreen'}id="changepercentage">{formatDecimal(obj.data.price.regularMarketChangePercent*100)}%</p>
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        })}
                     </div>
-                </div>
-                <div className="right-card">
-                    <div className="nasdaq-card">
-                        <h3>NASDAQ</h3>
-                    </div>
-                </div>
-                <div className="right-card">
-                    <div className="sp500-card">
-                        <h3>S&P 500</h3>
-                    </div>
-                </div>
-
+                )}
             </div>
         </div>
     </>

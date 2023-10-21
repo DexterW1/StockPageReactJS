@@ -106,7 +106,7 @@ export default function TopBar({watchlistData,setWatchlistData}) {
                 </div>
                 <div className="search-container">
                   <div className="control-search">
-                    <input type="search" id="search" name="search" autoComplete='off' placeholder='Search Stock...' ref={inputRef} onChange={(e)=>{setSearchInput(e.target.value);}} value={searchInput} />
+                    <input type="search" id="search" name="search" autoComplete='off' placeholder='Search Stock In Watchlist...' ref={inputRef} onChange={(e)=>{setSearchInput(e.target.value);}} value={searchInput} />
                     <div className="autocomplete-result">
                     <ul className="autocomplete-list">
                       {autocompleteData.map((obj)=>(

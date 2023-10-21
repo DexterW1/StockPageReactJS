@@ -11,7 +11,6 @@ router.get('/trending',async(req,res)=>{
     const result2 =await yahooFinance.chart('^DJI',queryOptions);
     const result3 =await yahooFinance.chart('^GSPC',queryOptions);
     convertData(result1);
-    console.log(result1);
     convertData(result2);
     convertData(result3);
     Promise.all([result1, result2, result3])

@@ -19,7 +19,6 @@ router.get('/quote',async(req,res)=>{
         '^GSPC': results[2],
      };
      // Send the combined data to the frontend
-     console.log(combinedData);
      res.json(combinedData);
      })
     .catch((error) => {
