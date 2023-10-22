@@ -3,15 +3,16 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/trend',async(req,res)=>{
-    const queryOptions= {count:17, lang:'en-US'};
+    const queryOptions= {count:30, lang:'en-US'};
     const queryOptions1 = {modules:['price','topHoldings']};
-    const result = await yahooFinance.trendingSymbols('US',queryOptions);
-    let summary= {};
+    let result = await yahooFinance.trendingSymbols('US',queryOptions);
     console.log(result);
-    const promise = result.quotes.map(async(item)=>{
+    result = result.quotes.filter((item)=> item.symbol!==':entitySlug');
+    console.log(result);
+    const promise = result.map(async(item)=>{
         const result = await yahooFinance.quoteSummary(item.symbol,queryOptions1);
         return {data:result, symbol:item.symbol};
-    })
+    }).slice(0,17);
     const send = await Promise.all(promise);
     res.json(send);
 });
