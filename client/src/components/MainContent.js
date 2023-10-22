@@ -96,7 +96,7 @@ export default function MainContent({watchlistData,setWatchlistData}) {
             </div>
             <div className="right-side-menu">
                 <h2 className='right-side-header'>Trending</h2>
-                {!rightData ? (<p>loading...</p>):(
+                {!rightData ? (<div>loading...</div>):(
                     <div className="right-card">
                         {rightData.map((obj,index)=>{
                             return(
