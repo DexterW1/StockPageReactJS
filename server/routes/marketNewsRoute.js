@@ -10,6 +10,7 @@ router.get('/market-news', async (req, res) => {
     const finnhub = require('finnhub');
     const api_key = finnhub.ApiClient.instance.authentications['api_key'];
     api_key.apiKey = finKey;
+    console.log(finKey);
     const finnhubClient = new finnhub.DefaultApi()
     finnhubClient.marketNews("general", {}, (error, data, response) => {
       res.json(data.slice(0,10));
