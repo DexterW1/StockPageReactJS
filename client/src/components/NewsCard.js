@@ -2,6 +2,9 @@ import React,{useState,useEffect} from 'react'
 import '../styles/NewsCard.css'
 export default function NewsCard(props) {
   const {info}=props;
+  if(!info){
+    return <div>Loading...</div>
+  }
   return (
     <>
         <div className="news-container">
