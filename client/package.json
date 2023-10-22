@@ -2,7 +2,7 @@
   "name": "stockpage",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://stock-page-server.onrender.com/",
+  "proxy": "https://stock-page-server.onrender.com",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@testing-library/jest-dom": "^5.17.0",
