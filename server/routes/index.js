@@ -8,6 +8,7 @@ const quoteRoutes = require('./quoteRoute');
 const postSymbol = require('./postSymbol');
 const trendSymbol = require('./trendingsymbols');
 const trend=require('./actualTrend');
+const dowRoute=require('./dowroute');
 // Import other route files as needed
 
 // Use the routes
@@ -16,6 +17,7 @@ router.use('/api',stockCandlesRoutes);
 router.use('/api',quoteRoutes);
 router.use('/api',trendSymbol);
 router.use('/api',trend);
+router.use('/api',dowRoute)
 router.use('/api/postsymbol',postSymbol);
 // Use other route files as needed
 
