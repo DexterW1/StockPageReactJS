@@ -13,6 +13,10 @@ router.get('/trending',async(req,res)=>{
     convertData(result1);
     convertData(result2);
     convertData(result3);
+    console.log(result1);
+    console.log(result2);
+    console.log(result3);
+
     Promise.all([result1, result2, result3])
      .then((results) => {
         // Combine the results into a single JSON object
