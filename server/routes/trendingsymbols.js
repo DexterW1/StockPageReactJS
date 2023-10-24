@@ -6,6 +6,8 @@ const convertData = require('../helperfunctions/converttimeunix');
 
 router.get('/trending',async(req,res)=>{
     const {start,end} = getTodayTimeUnix();
+    console.log("start: ",start);
+    console.log("end: ",end);
     const queryOptions = {period1:start,period2:end+(5*60),interval:'5m',lang:"en-us"}
     const result1 =await yahooFinance.chart('^IXIC',queryOptions);
     const result2 =await yahooFinance.chart('^DJI',queryOptions);
