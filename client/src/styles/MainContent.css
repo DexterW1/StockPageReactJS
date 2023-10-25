@@ -104,7 +104,7 @@
   flex-direction: column;
   /* justify-content: center; */
   overflow-y: auto;
-  max-height: 78vh;
+  max-height: 80vh;
   margin: 0 1.2rem 0rem 0rem;
   background: var(--surface);
   border-radius: 10px;
@@ -142,7 +142,7 @@
   background-color: var(--background);
   /* width: 100%; */
   margin: 0;
-  padding: .1rem .8rem;
+  padding: .4rem .8rem;
 }
 .right-card .small-cardb p,.small-cardl p{
   font-size: .5rem;
