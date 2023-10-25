@@ -8,17 +8,13 @@ router.get('/trending',async(req,res)=>{
     const {start,end} = getTodayTimeUnix();
     console.log("start: ",start);
     console.log("end: ",end);
-    const queryOptions = {period1:start,period2:end+(5*60),interval:'5m',lang:"en-us"}
+    const queryOptions = {period1:start,interval:'5m',lang:"en-us"}
     const result1 =await yahooFinance.chart('^IXIC',queryOptions);
     const result2 =await yahooFinance.chart('^DJI',queryOptions);
     const result3 =await yahooFinance.chart('^GSPC',queryOptions);
     convertData(result1);
     convertData(result2);
     convertData(result3);
-    console.log(result1);
-    console.log(result2);
-    console.log(result3);
-
     Promise.all([result1, result2, result3])
      .then((results) => {
         // Combine the results into a single JSON object
