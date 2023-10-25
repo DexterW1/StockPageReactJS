@@ -5,7 +5,7 @@ import DashboardCard from './DashboardCard';
 import NewsCard from './NewsCard';
 import axios from 'axios';
 import WatchlistContent from './WatchlistContent';
-const url = "http://localhost:5003"
+const url = "https://stock-page-server.vercel.app/"
 function formatDollar(value) {
     const roundedValue = parseFloat(value).toFixed(2);
     return parseFloat(roundedValue).toLocaleString('en-US', {
