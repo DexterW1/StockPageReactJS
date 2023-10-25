@@ -47,9 +47,9 @@ export default function MainContent({watchlistData,setWatchlistData}) {
         console.log(res.data);
     });
   },[]);
-  if(!info || !stockYahoo3 || !symData3 || !rightData){
-    return <div>loading...</div>
-  }
+//   if(!info || !stockYahoo3 || !symData3 || !rightData){
+//     return <div>loading...</div>
+//   }
   return (
     <>
         <div className="main-container">
