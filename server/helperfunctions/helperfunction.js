@@ -28,6 +28,6 @@ module.exports = function getTodayTimeUnix() {
 
   // Add 6 hours and 30 minutes to get 1:00 PM PDT
   endOfDayPDT = startOfDayPDT + (6 * 60 + 30) * 60;
-
+  endOfDayPDT = endOfDayPDT*(5*60);
   return { start: startOfDayPDT, end: endOfDayPDT };
 };
