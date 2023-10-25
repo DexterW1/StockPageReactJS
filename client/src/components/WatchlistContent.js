@@ -24,7 +24,6 @@ export default function WatchlistContent({watchlistData,setWatchlistData}) {
     localStorage.clear();
   }
   useEffect(()=>{
-    console.log(filterVariable);
     if(filterDirection===0){
       if(filterVariable==="Name"){
         const sortedData = [...watchlistData].sort((a,b)=>{
@@ -39,11 +38,9 @@ export default function WatchlistContent({watchlistData,setWatchlistData}) {
         setWatchlistData(sortedData);
       }
       else if(filterVariable==="Price"){
-        console.log("entered price");
         const sortedData = [...watchlistData].sort((a,b)=>{
           return a.data.c - b.data.c;
         })
-        console.log(sortedData);
         setWatchlistData(sortedData);
       }
       else if(filterVariable==="Day Change"){
