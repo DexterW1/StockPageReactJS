@@ -24,7 +24,7 @@ export default function TopBar({watchlistData,setWatchlistData}) {
   }
   function handleSearch(symbol){
     if(symbol !=='' && !watchlistData.some(item => item.symbol === symbol)){
-      axios.post(`${url}/api/postsymbol/sendsymbol`,{symbol})
+      axios.post(`${url}api/postsymbol/sendsymbol`,{symbol})
         .then((res)=>{
           res.data.data.color = res.data.data.dp < 0 ? 1 : 0;
           const prevResultsData = [...watchlistData,res.data];
