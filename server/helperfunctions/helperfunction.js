@@ -27,6 +27,6 @@ module.exports = function getTodayTimeUnix() {
   startOfDayPDT = Math.floor(now / 1000); // Convert to Unix timestamp in seconds
 
   // Add 6 hours and 30 minutes to get 1:00 PM PDT
-  endOfDayPDT = startOfDayPDT + (6 * 60 + 30) * 60;
+  endOfDayPDT = startOfDayPDT + (6 * 60 *60) + (30*60);
   return { start: startOfDayPDT, end: endOfDayPDT };
 };

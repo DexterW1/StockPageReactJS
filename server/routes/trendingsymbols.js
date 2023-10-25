@@ -8,7 +8,7 @@ router.get('/trending',async(req,res)=>{
     const {start,end} = getTodayTimeUnix();
     console.log("start: ",start);
     console.log("end: ",end);
-    const queryOptions = {period1:start,interval:'5m',lang:"en-us"}
+    const queryOptions = {period1:start,period2:end,interval:'5m',lang:"en-us"}
     const result1 =await yahooFinance.chart('^IXIC',queryOptions);
     const result2 =await yahooFinance.chart('^DJI',queryOptions);
     const result3 =await yahooFinance.chart('^GSPC',queryOptions);
