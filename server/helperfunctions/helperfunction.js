@@ -1,4 +1,8 @@
-
+function convertGMTtoPDT(gmtTimestamp) {
+  // Convert the GMT timestamp to PDT by adding 7 hours (7 * 60 * 60 seconds)
+  const pdtTimestamp = gmtTimestamp + 7 * 60 * 60;
+  return pdtTimestamp;
+}
 module.exports = function getTodayTimeUnix() {
   const now = new Date();
   const dayOfWeek = now.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
@@ -28,5 +32,7 @@ module.exports = function getTodayTimeUnix() {
 
   // Add 6 hours and 30 minutes to get 1:00 PM PDT
   endOfDayPDT = startOfDayPDT + (6 * 60 *60) + (30*60);
+  startOfDayPDT = convertGMTtoPDT(startOfDayPDT);
+  endOfDayPDT = convertGMTtoPDT(endOfDayPDT);
   return { start: startOfDayPDT, end: endOfDayPDT };
 };
