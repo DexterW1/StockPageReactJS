@@ -5,6 +5,7 @@ import DashboardCard from './DashboardCard';
 import NewsCard from './NewsCard';
 import axios from 'axios';
 import WatchlistContent from './WatchlistContent';
+import Loader from './loader';
 const url = "http://localhost:5003"
 function formatDollar(value) {
     const roundedValue = parseFloat(value).toFixed(2);
@@ -48,7 +49,7 @@ export default function MainContent({watchlistData,setWatchlistData}) {
     });
   },[]);
 //   if(!info || !stockYahoo3 || !symData3 || !rightData){
-//     return <div>loading...</div>
+//     return <Loader/>
 //   }
   return (
     <>
@@ -99,7 +100,7 @@ export default function MainContent({watchlistData,setWatchlistData}) {
             </div>
             <div className="right-side-menu">
                 <h2 className='right-side-header'>Trending</h2>
-                {!rightData ? (<div>loading...</div>):(
+                {!rightData ? (<Loader/>):(
                     <div className="right-card">
                         {rightData.map((obj,index)=>{
                             return(

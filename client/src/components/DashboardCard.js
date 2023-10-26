@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import '../styles/DashboardCard.css'
 import ChartCard from './ChartCard';
 import SymbolInfo from './SymbolInfo';
+import Loader from './loader';
 function formatYAxisLabel(value) {
   const roundedValue = parseFloat(value).toFixed(2);
   return parseFloat(roundedValue).toLocaleString('en-US', {
@@ -15,7 +16,8 @@ export default function DashboardCard(props) {
   const {stockName,Data,tickerSym}=props;
   if (!Data || !Data.quotes || Data.quotes.length === 0) {
     // Data is not available yet or doesn't have quotes, you can return a loading indicator or handle this case.
-    return <div>Loading...</div>;
+    // return <div>Loading...</div>;
+    return <Loader/>
   }
   return (
     <>

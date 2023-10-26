@@ -1,9 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import '../styles/NewsCard.css'
+import Loader from './loader';
 export default function NewsCard(props) {
   const {info}=props;
   if(!info){
-    return <div>Loading...</div>
+    console.log("ENTERED NEWS");
+    // return <div>Loading...</div>
+    return <Loader/>
   }
   return (
     <>
