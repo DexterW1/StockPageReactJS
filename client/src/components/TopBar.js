@@ -5,7 +5,7 @@ const nasdaqTicker = './tickerData/nasdaq_tickers.json';
 const nyseTicker = '/tickerData/nyse_tickers.json';
 const nasdaqFull = './tickerData/nasdaq_full_tickers.json';
 const nyseFull = './tickerData/nyse_full_tickers.json';
-const url="https://stock-page-server.vercel.app/";
+const url="https://stock-page-server.vercel.app";
 
 export default function TopBar({watchlistData,setWatchlistData}) {
   const [searchInput,setSearchInput]= useState('');
