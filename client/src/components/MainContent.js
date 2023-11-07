@@ -6,7 +6,7 @@ import NewsCard from "./NewsCard";
 import axios from "axios";
 import WatchlistContent from "./WatchlistContent";
 import Loader from "./loader";
-const url = "https://stock-page-server.vercel.app";
+const url = "https://stock-page-server.vercel.app/";
 function formatDollar(value) {
   const roundedValue = parseFloat(value).toFixed(2);
   return parseFloat(roundedValue).toLocaleString("en-US", {
@@ -31,20 +31,20 @@ export default function MainContent({ watchlistData, setWatchlistData }) {
   const [symData3, setSymData3] = useState([]);
   const [rightData, setRightData] = useState([]);
   useEffect(() => {
-    axios.get(`${url}/api/market-news`).then((response) => {
+    axios.get(`${url}api/market-news`).then((response) => {
       setInfo(response.data);
     });
-    axios.get(`${url}/api/trending`).then((res) => {
+    axios.get(`${url}api/trending`).then((res) => {
       setStockYahoo1(res.data["^DJI"]);
       setStockYahoo2(res.data["^IXIC"]);
       setStockYahoo3(res.data["^GSPC"]);
     });
-    axios.get(`${url}/api/quote`).then((res) => {
+    axios.get(`${url}api/quote`).then((res) => {
       setSymData1(res.data["^DJI"]);
       setSymData2(res.data["^IXIC"]);
       setSymData3(res.data["^GSPC"]);
     });
-    axios.get(`${url}/api/trend`).then((res) => {
+    axios.get(`${url}api/trend`).then((res) => {
       setRightData(res.data);
     });
   }, []);
