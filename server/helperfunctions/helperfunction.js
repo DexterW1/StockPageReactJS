@@ -13,7 +13,11 @@ module.exports = function getTodayTimeUnix() {
   let startOfDayPDT, endOfDayPDT;
 
   // Check if it's before 6:30 AM PDT (1:30 PM UTC), if so, use the previous day's data
-  if (currentHour < 13 + pdtOffset / 60 || (currentHour === 13 + pdtOffset / 60 && currentMinute < 30 + pdtOffset % 60)) {
+  if (
+    currentHour < 13 + pdtOffset / 60 ||
+    (currentHour === 13 + pdtOffset / 60 &&
+      currentMinute < 30 + (pdtOffset % 60))
+  ) {
     now.setDate(now.getDate() - 1); // Use the previous day's data
   }
 
@@ -24,15 +28,15 @@ module.exports = function getTodayTimeUnix() {
 
   // Set the time to 6:30 AM PDT
   now.setHours(13 + pdtOffset / 60);
-  now.setMinutes(30 + pdtOffset % 60);
+  now.setMinutes(30 + (pdtOffset % 60));
   now.setSeconds(0);
   now.setMilliseconds(0);
 
   startOfDayPDT = Math.floor(now / 1000); // Convert to Unix timestamp in seconds
 
   // Add 6 hours and 30 minutes to get 1:00 PM PDT
-  endOfDayPDT = startOfDayPDT + (6 * 60 *60) + (30*60);
-  // startOfDayPDT = convertGMTtoPDT(startOfDayPDT);
-  // endOfDayPDT = convertGMTtoPDT(endOfDayPDT);
+  endOfDayPDT = startOfDayPDT + 6 * 60 * 60 + 30 * 60;
+  startOfDayPDT = convertGMTtoPDT(startOfDayPDT);
+  endOfDayPDT = convertGMTtoPDT(endOfDayPDT);
   return { start: startOfDayPDT, end: endOfDayPDT };
 };
