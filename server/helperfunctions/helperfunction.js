@@ -32,7 +32,7 @@ module.exports = function getTodayTimeUnix() {
 
   // Add 6 hours and 30 minutes to get 1:00 PM PDT
   endOfDayPDT = startOfDayPDT + (6 * 60 *60) + (30*60);
-  startOfDayPDT = convertGMTtoPDT(startOfDayPDT);
-  endOfDayPDT = convertGMTtoPDT(endOfDayPDT);
+  // startOfDayPDT = convertGMTtoPDT(startOfDayPDT);
+  // endOfDayPDT = convertGMTtoPDT(endOfDayPDT);
   return { start: startOfDayPDT, end: endOfDayPDT };
 };
