@@ -30,9 +30,10 @@ To run the project locally, follow these steps:
 3. Navigate to 'client/src/components/(TopBar.js and MainContent.js)' change the const url to 'http://localhost:5000/'
 4. Start the backend server using `npm start` in the backend directory.
 5. Start the frontend server using `npm start` in the frontend directory.
-## Contributing
 
-Contributions are welcome! Feel free to fork the repository, make your enhancements, and submit a pull request.
+## Live Demo
+
+This project is hosted on Vercel. You can access the live version at [Stock Market Platform - Live Demo](https://stock-page-client.vercel.app/).
 
 ## License
 
