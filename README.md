@@ -18,7 +18,7 @@ Welcome to the Stock Market Platform! This project is a dynamic and user-friendl
   
 ## Key Functionalities
 
-- **Data Persistence:** The platform ensures seamless data persistence, safeguarding user information even upon tab closure.
+- **Data Persistence:** The platform uses your browsers local storage for watchlist storage, safeguarding user information even upon tab closure. 
 - **User-Friendly Interface:** A clean and intuitive design to enhance the user experience and accessibility.
 
 ## Installation and Usage
