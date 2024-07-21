@@ -75,6 +75,7 @@ export default function MainContent({ watchlistData, setWatchlistData }) {
     // axios.get(`${url}api/trend`).then((res) => {
     //   setRightData(res.data);
     // });
+    fetchData();
   }, []);
   if (loader) {
     return (
