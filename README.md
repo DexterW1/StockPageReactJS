@@ -18,7 +18,7 @@ Welcome to the Stock Market Platform! This project is a dynamic and user-friendl
   
 ## Key Functionalities
 
-- **Data Persistence:** The platform ensures seamless data persistence, safeguarding user information even upon tab closure.
+- **Data Persistence:** The platform uses your browsers local storage for watchlist storage, safeguarding user information even upon tab closure. 
 - **User-Friendly Interface:** A clean and intuitive design to enhance the user experience and accessibility.
 
 ## Installation and Usage
@@ -27,9 +27,10 @@ To run the project locally, follow these steps:
 
 1. Clone the repository.
 2. Navigate to the `client` and `server` directories and install dependencies using `npm install`.
-3. Navigate to 'client/src/components/(TopBar.js and MainContent.js)' change the const url to 'http://localhost:5000/'
-4. Start the backend server using `npm start` in the backend directory.
-5. Start the frontend server using `npm start` in the frontend directory.
+3. Navigate to 'client/src/components/(TopBar.js and MainContent.js)' change the const url to 'http://localhost:5003/'
+4. Create a .env file in the root of `server` directory and add API_KEY = (finnhub api key) https://finnhub.io/
+5. Start the backend server using `npm start` in the backend directory.
+6. Start the frontend server using `npm start` in the frontend directory.
 
 ## Live Demo
 
