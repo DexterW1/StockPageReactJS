@@ -28,7 +28,6 @@ export default function DashboardCard(props) {
     while (Data.quotes[endCount].close === null) {
       endCount--;
     }
-    console.log(startCount, endCount);
     return { startCount, endCount };
   };
   const { startCount, endCount } = findStartandEnd();

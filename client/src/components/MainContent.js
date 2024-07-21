@@ -7,6 +7,7 @@ import axios from "axios";
 import WatchlistContent from "./WatchlistContent";
 import Loader from "./loader";
 const url = "https://stock-page-server.vercel.app/";
+// const url = "http://localhost:5003/";
 function formatDollar(value) {
   const roundedValue = parseFloat(value).toFixed(2);
   return parseFloat(roundedValue).toLocaleString("en-US", {
@@ -33,6 +34,7 @@ export default function MainContent({ watchlistData, setWatchlistData }) {
   useEffect(() => {
     axios.get(`${url}api/market-news`).then((response) => {
       setInfo(response.data);
+      console.log(response.data);
     });
     axios.get(`${url}api/trending`).then((res) => {
       setStockYahoo1(res.data["^DJI"]);
