@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/TopBar.css";
 import axios from "axios";
 const nasdaqTicker = "./tickerData/nasdaq_tickers.json";

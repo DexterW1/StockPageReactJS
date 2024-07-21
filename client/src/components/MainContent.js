@@ -5,7 +5,8 @@ import DashboardCard from "./DashboardCard";
 import NewsCard from "./NewsCard";
 import axios from "axios";
 import WatchlistContent from "./WatchlistContent";
-import Loader from "./loader";
+// import Loader from "./loader";
+import { Grid } from "react-loader-spinner";
 const url = "https://stock-page-server.vercel.app/";
 // const url = "http://localhost:5003/";
 function formatDollar(value) {
@@ -31,28 +32,90 @@ export default function MainContent({ watchlistData, setWatchlistData }) {
   const [symData2, setSymData2] = useState([]);
   const [symData3, setSymData3] = useState([]);
   const [rightData, setRightData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    axios.get(`${url}api/market-news`).then((response) => {
-      setInfo(response.data);
-      console.log(response.data);
-    });
-    axios.get(`${url}api/trending`).then((res) => {
-      setStockYahoo1(res.data["^DJI"]);
-      setStockYahoo2(res.data["^IXIC"]);
-      setStockYahoo3(res.data["^GSPC"]);
-    });
-    axios.get(`${url}api/quote`).then((res) => {
-      setSymData1(res.data["^DJI"]);
-      setSymData2(res.data["^IXIC"]);
-      setSymData3(res.data["^GSPC"]);
-    });
-    axios.get(`${url}api/trend`).then((res) => {
-      setRightData(res.data);
-    });
+    const fetchData = async () => {
+      try {
+        const [marketNewsRes, trendingRes, quoteRes, trendRes] =
+          await Promise.all([
+            axios.get(`${url}api/market-news`),
+            axios.get(`${url}api/trending`),
+            axios.get(`${url}api/quote`),
+            axios.get(`${url}api/trend`),
+          ]);
+
+        setInfo(marketNewsRes.data);
+        setStockYahoo1(trendingRes.data["^DJI"]);
+        setStockYahoo2(trendingRes.data["^IXIC"]);
+        setStockYahoo3(trendingRes.data["^GSPC"]);
+        setSymData1(quoteRes.data["^DJI"]);
+        setSymData2(quoteRes.data["^IXIC"]);
+        setSymData3(quoteRes.data["^GSPC"]);
+        setRightData(trendRes.data);
+
+        setLoading(false); // Data has been successfully fetched
+      } catch (err) {
+        console.error(err);
+        setLoading(false); // Even if there's an error, stop the loading state
+      }
+    };
+
+    fetchData();
   }, []);
-  //   if(!info || !stockYahoo3 || !symData3 || !rightData){
-  //     return <Loader/>
-  //   }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const [marketNewsRes,trendingRes,quoteRes,trendRight]= await Promise.all([
+  //       axios.get(`${url}api/market-news`),
+  //       axios.get(`${url}api/trending`),
+  //       axios.get(`${url}api/quote`),
+  //       axios.get(`${url}api/trend`)
+  //     ]);
+  //     setInfo(marketNewsRes.data);
+  //     setStockYahoo1(trendingRes.data["^DJI"]);
+  //     setStockYahoo2(trendingRes.data["^IXIC"]);
+  //     setStockYahoo3(trendingRes.data["^GSPC"]);
+  //     setSymData1(quoteRes.data["^DJI"]);
+  //     setSymData2(quoteRes.data["^IXIC"]);
+  //     setSymData3(quoteRes.data["^GSPC"]);
+  //     setRightData(trendRight.data);
+  //     setLoading(false);
+  //   };
+  // axios.get(`${url}api/market-news`).then((response) => {
+  //   setInfo(response.data);
+  //   console.log(response.data);
+  // });
+  // axios.get(`${url}api/trending`).then((res) => {
+  //   setStockYahoo1(res.data["^DJI"]);
+  //   setStockYahoo2(res.data["^IXIC"]);
+  //   setStockYahoo3(res.data["^GSPC"]);
+  // });
+  // axios.get(`${url}api/quote`).then((res) => {
+  //   setSymData1(res.data["^DJI"]);
+  //   setSymData2(res.data["^IXIC"]);
+  //   setSymData3(res.data["^GSPC"]);
+  // });
+  // axios.get(`${url}api/trend`).then((res) => {
+  //   setRightData(res.data);
+  // });
+  // }, []);
+
+  if (loading) {
+    return (
+      <div className="loaderStyle">
+        <Grid
+          visible={true}
+          height="80"
+          width="80"
+          color="#FFFFFF"
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{}}
+          wrapperClass="grid-wrapper"
+        />
+      </div>
+    );
+  }
   return (
     <>
       <div className="main-container">

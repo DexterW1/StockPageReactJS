@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../styles/NewsCard.css";
 import Loader from "./loader";
 export default function NewsCard(props) {
